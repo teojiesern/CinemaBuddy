@@ -2,7 +2,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home';
 import WatchList from '../screens/WatchList';
 import Icon from 'react-native-vector-icons/Feather';
-import {RootStackParamList} from './App';
+import {RootStackParamList} from './StackNavigator';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 

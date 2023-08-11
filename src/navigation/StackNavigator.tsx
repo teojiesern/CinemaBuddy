@@ -1,6 +1,5 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import WatchList from '../screens/WatchList';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import MovieDetails from '../screens/MovieDetails';
 import TabNavigator from './TabNavigator';
 
 export type RootStackParamList = {
@@ -12,17 +11,15 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export default function App(): JSX.Element {
+export default function StackNavigator(): JSX.Element {
   return (
-    <NavigationContainer>
       <Stack.Navigator initialRouteName="Main">
         <Stack.Screen
           name="Main"
           component={TabNavigator}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="Details" component={WatchList} />
+        <Stack.Screen name="Details" component={MovieDetails} />
       </Stack.Navigator>
-    </NavigationContainer>
   );
 }

@@ -3,14 +3,21 @@ import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../navigation/StackNavigator';
 
-type WatchListProps = NativeStackScreenProps<RootStackParamList, 'WatchList'>;
+type DetailsProps = NativeStackScreenProps<RootStackParamList, 'Details'>;
 
-export default function WatchList({}: WatchListProps) {
+const MovieDetails = ({
+  navigation,
+  route: {
+    params: {id},
+  },
+}: DetailsProps) => {
   return (
     <View>
-      <Text>WatchList</Text>
+      <Text>MovieDetailed</Text>
     </View>
   );
-}
+};
+
+export default MovieDetails;
 
 const styles = StyleSheet.create({});
