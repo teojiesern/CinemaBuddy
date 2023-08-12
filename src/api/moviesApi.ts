@@ -1,7 +1,8 @@
 import axios, {AxiosError} from 'axios';
+import API_KEY from './headers';
 
 const headers = {
-  'X-RapidAPI-Key': '4ed1422592mshf311bfbfa37f247p1a656cjsn623e61c0e23c',
+  'X-RapidAPI-Key': API_KEY,
   'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com',
 };
 
@@ -24,6 +25,13 @@ export async function fetchPopularMovies(): Promise<Movies[] | AxiosError> {
   } catch (error) {
     return error as AxiosError;
   }
+}
+
+export async function testing() {
+  const res = await axios.get(
+    'https://moviesdatabase.p.rapidapi.com/titles/tt0499549?info:primaryVideos',
+  );
+  return res.data;
 }
 
 export async function fetchNext(url: string) {
