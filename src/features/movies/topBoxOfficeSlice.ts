@@ -1,25 +1,26 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
+import {RootState} from '../../app/store';
 
 interface MoviesState {
-  sortedMovies: Movies[];
+  TopBoxOfficeMovies: Movies[];
   status: 'idle' | 'loading' | 'failed' | 'success';
 }
 
 // the state in reducers will already be correctly typed due to this initial state
 const initialState: MoviesState = {
-  sortedMovies: [],
+  TopBoxOfficeMovies: [],
   status: 'idle',
 };
 
-const moviesSlice = createSlice({
-  name: 'movies',
+const topBoxOfficeSlice = createSlice({
+  name: 'topBoxOffice',
   initialState,
   reducers: {
     getPopularMovies: state => {
       state.status = 'loading';
     },
     getPopularMoviesSuccess: (state, action: PayloadAction<Movies[]>) => {
-      state.sortedMovies = action.payload;
+      state.TopBoxOfficeMovies.concat(action.payload);
       state.status = 'success';
     },
     getPopularMoviesFailure: state => {
@@ -28,5 +29,13 @@ const moviesSlice = createSlice({
   },
 });
 
-export const {getPopularMovies} = moviesSlice.actions;
-export default moviesSlice.reducer;
+export const {
+  getPopularMovies,
+  getPopularMoviesSuccess,
+  getPopularMoviesFailure,
+} = topBoxOfficeSlice.actions;
+
+export const selectTopBoxOfficeMovies = (state: RootState) =>
+  state.topBoxOffice.TopBoxOfficeMovies;
+
+export default topBoxOfficeSlice.reducer;

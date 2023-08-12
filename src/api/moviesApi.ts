@@ -6,14 +6,17 @@ const headers = {
   'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com',
 };
 
-export async function fetchPopularMovies(): Promise<Movies[] | AxiosError> {
+export async function fetchTopBoxOfficeMovies(
+  pageNum = 1,
+): Promise<ApiResponse[] | AxiosError> {
   const options = {
     method: 'GET',
     url: 'https://moviesdatabase.p.rapidapi.com/titles',
     params: {
       list: 'top_boxoffice_200',
-      info: 'base_info',
-      limit: '50',
+      limit: '9',
+      sort: 'pos.incr',
+      page: pageNum.toString(),
     },
     headers,
   };
@@ -27,21 +30,15 @@ export async function fetchPopularMovies(): Promise<Movies[] | AxiosError> {
   }
 }
 
-export async function testing() {
-  const res = await axios.get(
-    'https://moviesdatabase.p.rapidapi.com/titles/tt0499549?info:primaryVideos',
-  );
-  return res.data;
-}
-
-export async function fetchNext(url: string) {
+export async function fetchTopBoxOfficeLastWeekMovies(pageNum = 1) {
   const options = {
     method: 'GET',
-    url: `https://moviesdatabase.p.rapidapi.com/titles${url}`,
+    url: 'https://moviesdatabase.p.rapidapi.com/titles',
     params: {
-      list: 'top_boxoffice_200',
-      info: 'base_info',
-      limit: '50',
+      list: 'top_boxoffice_last_weekend_10',
+      limit: '9',
+      sort: 'pos.incr',
+      page: pageNum.toString(),
     },
     headers,
   };

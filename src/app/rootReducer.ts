@@ -1,7 +1,9 @@
-import moviesReducer from '../features/movies/moviesSlice';
+import topBoxOfficeReducer from '../features/movies/topBoxOfficeSlice';
+import topBoxOfficeLastWeekReducer from '../features/movies/topBoxOfficeLastWeekSlice';
 
 const rootReducer = {
-  movies: moviesReducer,
+  topBoxOffice: topBoxOfficeReducer,
+  topBoxOfficeLastWeek: topBoxOfficeLastWeekReducer,
 };
 
 export default rootReducer;

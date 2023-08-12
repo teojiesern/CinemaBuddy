@@ -1,17 +1,46 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Pressable, StyleSheet, Text, View, ScrollView} from 'react-native';
+import {useAppDispatch, useAppSelector} from '../app/hooks';
+import TopBoxOffice from '../components/templates/TopBoxOffice';
+import {
+  getPopularMovies,
+  selectTopBoxOfficeMovies,
+} from '../features/movies/topBoxOfficeSlice';
 import {RootStackParamList} from '../navigation/StackNavigator';
-import {useAppDispatch} from '../app/hooks';
-import {getPopularMovies} from '../features/movies/moviesSlice';
+import {
+  getTopBoxOfficeLastWeekMovies,
+  selectTopBoxOfficeLastWeekMovie,
+} from '../features/movies/topBoxOfficeLastWeekSlice';
+import TopBoxOfficeLastWeek from '../components/templates/TopBoxOfficeLastWeek';
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
+type movieLists = 'TOP_BOX_OFFICE' | 'TOP_RATED' | 'POPULAR';
 
 export default function Home({navigation}: HomeProps) {
+  const [movieList, setMovieList] = useState<movieLists>('TOP_BOX_OFFICE');
   const dispatch = useAppDispatch();
+
+  const topBoxOfficeMovies = useAppSelector(selectTopBoxOfficeMovies);
+  const topBoxOfficeMoviesLastWeek = useAppSelector(
+    selectTopBoxOfficeLastWeekMovie,
+  );
+
+  useEffect(() => {
+    dispatch(getTopBoxOfficeLastWeekMovies());
+  }, []);
+
+  const renderItem = ({item}: {item: Movies}) => {
+    return (
+      <View>
+        <Text>{item.titleText.text}</Text>
+      </View>
+    );
+  };
   return (
     <View>
-      <Text>Home</Text>
+      <Text>What do you want to watch?</Text>
+      <TopBoxOfficeLastWeek movies={topBoxOfficeMoviesLastWeek} />
       <Pressable
         onPress={() => navigation.navigate('Details', {id: 'something'})}>
         <Text>Press me</Text>
@@ -19,6 +48,12 @@ export default function Home({navigation}: HomeProps) {
       <Pressable onPress={() => dispatch(getPopularMovies())}>
         <Text>me</Text>
       </Pressable>
+
+      <ScrollView horizontal>
+        <Text>HEllo</Text>
+      </ScrollView>
+
+      <TopBoxOffice movies={topBoxOfficeMovies} />
     </View>
   );
 }
