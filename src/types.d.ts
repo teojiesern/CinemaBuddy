@@ -1,7 +1,7 @@
 interface Movies {
   _id: string;
   id: string;
-  primaryImage: primaryImage;
+  primaryImage: primaryImage ;
   titleType: titleType;
   titleText: titleText;
   originalTitleText: titleText;

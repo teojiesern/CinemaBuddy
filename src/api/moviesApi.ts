@@ -36,7 +36,6 @@ export async function fetchTopBoxOfficeLastWeekMovies(pageNum = 1) {
     url: 'https://moviesdatabase.p.rapidapi.com/titles',
     params: {
       list: 'top_boxoffice_last_weekend_10',
-      limit: '9',
       sort: 'pos.incr',
       page: pageNum.toString(),
     },

@@ -5,15 +5,24 @@ type Props = {
   primaryImage: primaryImage;
 };
 
-export default function ImageCard({primaryImage: {height, width, url}}: Props) {
+export default function ImageCard({primaryImage}: Props) {
   return (
     <View>
-      <Image
-        source={{uri: url}}
-        width={width}
-        height={height}
-        style={styles.Image}
-      />
+      {primaryImage ? (
+        <Image
+          source={{uri: primaryImage.url}}
+          width={primaryImage.width}
+          height={primaryImage.height}
+          style={styles.Image}
+        />
+      ) : (
+        <Image
+          source={require('../assets/noImg.jpg')}
+          width={318}
+          height={450}
+          style={styles.Image}
+        />
+      )}
     </View>
   );
 }

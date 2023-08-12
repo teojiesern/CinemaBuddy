@@ -30,32 +30,32 @@ export default function Home({navigation}: HomeProps) {
     dispatch(getTopBoxOfficeLastWeekMovies());
   }, []);
 
-  const renderItem = ({item}: {item: Movies}) => {
-    return (
-      <View>
-        <Text>{item.titleText.text}</Text>
-      </View>
-    );
-  };
   return (
-    <View>
-      <Text>What do you want to watch?</Text>
+    <View style={{padding: 10}}>
+      <Text style={styles.HeadingText}>What do you want to watch?</Text>
       <TopBoxOfficeLastWeek movies={topBoxOfficeMoviesLastWeek} />
-      <Pressable
+      {/* <Pressable
         onPress={() => navigation.navigate('Details', {id: 'something'})}>
         <Text>Press me</Text>
-      </Pressable>
+      </Pressable> */}
       <Pressable onPress={() => dispatch(getPopularMovies())}>
         <Text>me</Text>
       </Pressable>
 
-      <ScrollView horizontal>
+      {/* <ScrollView horizontal>
         <Text>HEllo</Text>
-      </ScrollView>
+      </ScrollView> */}
 
       <TopBoxOffice movies={topBoxOfficeMovies} />
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  HeadingText: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold',
+    marginVertical: 10,
+  },
+});

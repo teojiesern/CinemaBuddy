@@ -20,7 +20,8 @@ const topBoxOfficeSlice = createSlice({
       state.status = 'loading';
     },
     getPopularMoviesSuccess: (state, action: PayloadAction<Movies[]>) => {
-      state.TopBoxOfficeMovies.concat(action.payload);
+      const newMovies = state.TopBoxOfficeMovies.concat(action.payload);
+      state.TopBoxOfficeMovies = newMovies;
       state.status = 'success';
     },
     getPopularMoviesFailure: state => {

@@ -1,5 +1,6 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 import {RootState} from '../../app/store';
+import {act} from 'react-test-renderer';
 
 interface types {
   topBoxOfficeLastWeekMovies: Movies[];
@@ -22,7 +23,8 @@ const topBoxOfficeLastWeekSlice = createSlice({
       state,
       action: PayloadAction<Movies[]>,
     ) => {
-      state.topBoxOfficeLastWeekMovies.concat(action.payload);
+      const newMovies = state.topBoxOfficeLastWeekMovies.concat(action.payload);
+      state.topBoxOfficeLastWeekMovies = newMovies;
       state.status = 'success';
     },
     getTopBoxOfficeLastWeekMoviesFailure: state => {

@@ -8,7 +8,11 @@ const Tab = createBottomTabNavigator<RootStackParamList>();
 
 export default function TabNavigator(): JSX.Element {
   return (
-    <Tab.Navigator screenOptions={{headerShown: false}}>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {backgroundColor: '#242A32'},
+      }}>
       <Tab.Screen
         name="Home"
         component={Home}
