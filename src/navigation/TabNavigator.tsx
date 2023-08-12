@@ -12,7 +12,8 @@ export default function TabNavigator(): JSX.Element {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {backgroundColor: '#242A32'},
-      }}>
+      }}
+      initialRouteName="Home">
       <Tab.Screen
         name="Home"
         component={Home}

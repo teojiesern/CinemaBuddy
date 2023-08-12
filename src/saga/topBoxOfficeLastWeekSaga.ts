@@ -5,7 +5,7 @@ import {
 } from '../features/movies/topBoxOfficeLastWeekSlice';
 import {fetchTopBoxOfficeLastWeekMovies} from '../api/moviesApi';
 
-function* fetchSaga(): Generator {
+function* fetchSaga() {
   try {
     const data: ApiResponse = yield call(fetchTopBoxOfficeLastWeekMovies);
     yield put(getTopBoxOfficeLastWeekMoviesSuccess(data.results));

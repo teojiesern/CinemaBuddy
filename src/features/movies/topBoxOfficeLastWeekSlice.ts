@@ -1,6 +1,5 @@
-import {PayloadAction, createSlice} from '@reduxjs/toolkit';
-import {RootState} from '../../app/store';
-import {act} from 'react-test-renderer';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../../app/store';
 
 interface types {
   topBoxOfficeLastWeekMovies: Movies[];

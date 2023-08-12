@@ -1,6 +1,6 @@
 import {StyleSheet, FlatList, View} from 'react-native';
 import React from 'react';
-import {Props} from './TopBoxOffice';
+import {Props} from './MovieSlider';
 import ImageCard from '../ImageCard';
 import StyledNumber from '../StyledNumber';
 import {SafeAreaView} from 'react-native-safe-area-context';

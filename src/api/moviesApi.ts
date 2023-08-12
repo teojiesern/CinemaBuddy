@@ -30,12 +30,37 @@ export async function fetchTopBoxOfficeMovies(
   }
 }
 
-export async function fetchTopBoxOfficeLastWeekMovies(pageNum = 1) {
+export async function fetchTopBoxOfficeLastWeekMovies(
+  pageNum = 1,
+): Promise<ApiResponse[] | AxiosError> {
   const options = {
     method: 'GET',
     url: 'https://moviesdatabase.p.rapidapi.com/titles',
     params: {
       list: 'top_boxoffice_last_weekend_10',
+      sort: 'pos.incr',
+      page: pageNum.toString(),
+    },
+    headers,
+  };
+
+  try {
+    const response = await axios.request(options);
+    const data = response.data;
+    return data;
+  } catch (error) {
+    return error as AxiosError;
+  }
+}
+
+export async function fetchMostPopMovies(
+  pageNum = 1,
+): Promise<ApiResponse[] | AxiosError> {
+  const options = {
+    method: 'GET',
+    url: 'https://moviesdatabase.p.rapidapi.com/titles',
+    params: {
+      list: 'most_pop_movies',
       sort: 'pos.incr',
       page: pageNum.toString(),
     },

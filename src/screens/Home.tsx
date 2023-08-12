@@ -2,7 +2,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useEffect, useState} from 'react';
 import {Pressable, StyleSheet, Text, View, ScrollView} from 'react-native';
 import {useAppDispatch, useAppSelector} from '../app/hooks';
-import TopBoxOffice from '../components/templates/TopBoxOffice';
+import MovieSlider from '../components/templates/MovieSlider';
 import {
   getPopularMovies,
   selectTopBoxOfficeMovies,
@@ -13,6 +13,8 @@ import {
   selectTopBoxOfficeLastWeekMovie,
 } from '../features/movies/topBoxOfficeLastWeekSlice';
 import TopBoxOfficeLastWeek from '../components/templates/TopBoxOfficeLastWeek';
+import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 type movieLists = 'TOP_BOX_OFFICE' | 'TOP_RATED' | 'POPULAR';
@@ -20,6 +22,8 @@ type movieLists = 'TOP_BOX_OFFICE' | 'TOP_RATED' | 'POPULAR';
 export default function Home({navigation}: HomeProps) {
   const [movieList, setMovieList] = useState<movieLists>('TOP_BOX_OFFICE');
   const dispatch = useAppDispatch();
+  const tabBarHeight = useBottomTabBarHeight();
+  const insets = useSafeAreaInsets();
 
   const topBoxOfficeMovies = useAppSelector(selectTopBoxOfficeMovies);
   const topBoxOfficeMoviesLastWeek = useAppSelector(
@@ -28,26 +32,28 @@ export default function Home({navigation}: HomeProps) {
 
   useEffect(() => {
     dispatch(getTopBoxOfficeLastWeekMovies());
+    dispatch(getPopularMovies());
   }, []);
 
   return (
-    <View style={{padding: 10}}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        padding: 10,
+        marginBottom: tabBarHeight,
+        paddingBottom: insets.bottom,
+      }}>
       <Text style={styles.HeadingText}>What do you want to watch?</Text>
       <TopBoxOfficeLastWeek movies={topBoxOfficeMoviesLastWeek} />
       {/* <Pressable
         onPress={() => navigation.navigate('Details', {id: 'something'})}>
         <Text>Press me</Text>
       </Pressable> */}
-      <Pressable onPress={() => dispatch(getPopularMovies())}>
-        <Text>me</Text>
-      </Pressable>
 
-      {/* <ScrollView horizontal>
-        <Text>HEllo</Text>
-      </ScrollView> */}
+      
 
-      <TopBoxOffice movies={topBoxOfficeMovies} />
-    </View>
+      <MovieSlider movies={topBoxOfficeMovies} />
+    </SafeAreaView>
   );
 }
 

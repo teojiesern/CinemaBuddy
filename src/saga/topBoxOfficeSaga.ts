@@ -5,7 +5,7 @@ import {
   getPopularMoviesSuccess,
 } from '../features/movies/topBoxOfficeSlice';
 
-function* fetchSaga(): Generator {
+function* fetchSaga() {
   try {
     const data: ApiResponse = yield call(fetchTopBoxOfficeMovies);
     yield put(getPopularMoviesSuccess(data.results));
@@ -14,7 +14,7 @@ function* fetchSaga(): Generator {
   }
 }
 
-export default function* watchPopFetch() {
+export default function* watchTopBoxOfficeFetch() {
   yield take('topBoxOffice/getPopularMovies');
   yield call(fetchSaga);
 }
