@@ -18,12 +18,12 @@ export default function TopBoxOffice({movies}: Props) {
     );
   };
   return (
-    <View style={{paddingBottom: insets.bottom}}>
+    <View style={{flex: 5}}>
       <FlatList
         data={movies}
         renderItem={renderItem}
         keyExtractor={item => item.id}
-        // horizontal
+        numColumns={3}
       />
     </View>
   );

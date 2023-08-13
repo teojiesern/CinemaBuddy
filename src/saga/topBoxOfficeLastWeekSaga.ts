@@ -3,11 +3,11 @@ import {
   getTopBoxOfficeLastWeekMoviesFailure,
   getTopBoxOfficeLastWeekMoviesSuccess,
 } from '../features/movies/topBoxOfficeLastWeekSlice';
-import {fetchTopBoxOfficeLastWeekMovies} from '../api/moviesApi';
+import {fetchTopBoxOfficeLastWeekMoviesApi} from '../api/moviesApi';
 
 function* fetchSaga() {
   try {
-    const data: ApiResponse = yield call(fetchTopBoxOfficeLastWeekMovies);
+    const data: ApiResponse = yield call(fetchTopBoxOfficeLastWeekMoviesApi);
     yield put(getTopBoxOfficeLastWeekMoviesSuccess(data.results));
   } catch (error) {
     yield put(getTopBoxOfficeLastWeekMoviesFailure());

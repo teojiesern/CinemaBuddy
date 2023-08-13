@@ -16,24 +16,24 @@ const topBoxOfficeSlice = createSlice({
   name: 'topBoxOffice',
   initialState,
   reducers: {
-    getPopularMovies: state => {
+    getTopBoxOfficeMovies: state => {
       state.status = 'loading';
     },
-    getPopularMoviesSuccess: (state, action: PayloadAction<Movies[]>) => {
+    getTopBoxOfficeMoviesSuccess: (state, action: PayloadAction<Movies[]>) => {
       const newMovies = state.TopBoxOfficeMovies.concat(action.payload);
       state.TopBoxOfficeMovies = newMovies;
       state.status = 'success';
     },
-    getPopularMoviesFailure: state => {
+    getTopBoxOfficeMoviesFailure: state => {
       state.status = 'failed';
     },
   },
 });
 
 export const {
-  getPopularMovies,
-  getPopularMoviesSuccess,
-  getPopularMoviesFailure,
+  getTopBoxOfficeMovies,
+  getTopBoxOfficeMoviesSuccess,
+  getTopBoxOfficeMoviesFailure,
 } = topBoxOfficeSlice.actions;
 
 export const selectTopBoxOfficeMovies = (state: RootState) =>

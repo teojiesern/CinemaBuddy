@@ -36,6 +36,6 @@ export const {
 } = mostPopMoviesSlice.actions;
 
 export const selectMostPopMovies = (state: RootState) =>
-  state.mostPop.mostPopMovies;
+  state.mostPopMovies.mostPopMovies;
 
 export default mostPopMoviesSlice.reducer;

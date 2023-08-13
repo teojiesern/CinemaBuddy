@@ -3,11 +3,11 @@ import {
   getMostPopMoviesFailure,
   getMostPopMoviesSuccess,
 } from '../features/movies/mostPopMoviesSlice';
-import {fetchMostPopMovies} from '../api/moviesApi';
+import {fetchMostPopMoviesApi} from '../api/moviesApi';
 
 function* fetchPopMovies() {
   try {
-    const data: ApiResponse = yield call(fetchMostPopMovies);
+    const data: ApiResponse = yield call(fetchMostPopMoviesApi);
     yield put(getMostPopMoviesSuccess(data.results));
   } catch (error) {
     yield put(getMostPopMoviesFailure());
