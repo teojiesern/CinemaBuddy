@@ -3,6 +3,7 @@ import topBoxOfficeLastWeekReducer from '../features/movies/topBoxOfficeLastWeek
 import mostPopMoviesReducer from '../features/movies/mostPopMoviesSlice';
 import mostPopSeriesReducer from '../features/movies/mostPopSeriesSlice';
 import topRatedMoviesReducer from '../features/movies/topRatedMoviesSlice';
+import savedMoviesReducer from '../features/movies/savedMoviesSlice';
 
 const rootReducer = {
   topBoxOffice: topBoxOfficeReducer,
@@ -10,6 +11,7 @@ const rootReducer = {
   mostPopMovies: mostPopMoviesReducer,
   mostPopSeries: mostPopSeriesReducer,
   topRatedMovies: topRatedMoviesReducer,
+  savedMovies: savedMoviesReducer,
 };
 
 export default rootReducer;

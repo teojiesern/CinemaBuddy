@@ -1,5 +1,6 @@
 import axios, {AxiosError} from 'axios';
 import API_KEY from './headers';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const headers = {
   'X-RapidAPI-Key': API_KEY,
@@ -128,4 +129,14 @@ export async function fetchTopRatedMoviesApi(
   } catch (error) {
     return error as AxiosError;
   }
+}
+
+export async function setMovieToAsyncStorage(movie: Movies[]) {
+  await AsyncStorage.setItem('savedMovies', JSON.stringify(movie));
+}
+
+export async function getMoviesFromAsyncStorage() {
+  const savedMovies = await AsyncStorage.getItem('savedMovies');
+  if (!savedMovies) return [];
+  return JSON.parse(savedMovies);
 }

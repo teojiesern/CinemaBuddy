@@ -26,6 +26,7 @@ import {
   getTopRatedMovies,
   selectTopRatedMovies,
 } from '../features/movies/topRatedMoviesSlice';
+import {getMovies} from '../features/movies/savedMoviesSlice';
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 type movieLists =
@@ -56,6 +57,7 @@ export default function Home({navigation}: HomeProps) {
     dispatch(getMostPopMovies());
     dispatch(getMostPopSeries());
     dispatch(getTopRatedMovies());
+    dispatch(getMovies());
   }, []);
 
   let MoviesToDisplay = null;

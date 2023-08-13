@@ -6,9 +6,6 @@ import ImageCard from '../components/ImageCard';
 import GenreButton from '../components/GenreButton';
 
 type DetailsProps = NativeStackScreenProps<RootStackParamList, 'Details'>;
-
-// rating, title, runtime, language, genres, releaseDate, plot
-
 const MovieDetails = ({
   route: {
     params: {movie},
