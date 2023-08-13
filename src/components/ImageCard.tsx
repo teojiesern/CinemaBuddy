@@ -34,6 +34,8 @@ export default function ImageCard({primaryImage, width, height}: Props) {
 
 const styles = StyleSheet.create({
   Image: {
+    width: 120,
+    height: 170,
     borderRadius: 10,
   },
 });
