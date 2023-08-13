@@ -46,6 +46,10 @@ export default function Home({navigation}: HomeProps) {
   const topPopularSeries = useAppSelector(selectMostPopSeries);
   const topRatedMovies = useAppSelector(selectTopRatedMovies);
 
+  const moviePressHandler = (movie: Movies) => {
+    navigation.navigate('Details', {movie});
+  };
+
   useEffect(() => {
     dispatch(getTopBoxOfficeLastWeekMovies());
     dispatch(getTopBoxOfficeMovies());
@@ -57,16 +61,33 @@ export default function Home({navigation}: HomeProps) {
   let MoviesToDisplay = null;
   switch (movieList) {
     case 'TOP_BOX_OFFICE':
-      MoviesToDisplay = <MovieSlider movies={topBoxOfficeMovies} />;
+      MoviesToDisplay = (
+        <MovieSlider
+          movies={topBoxOfficeMovies}
+          pressHandler={moviePressHandler}
+        />
+      );
       break;
     case 'POPULAR_MOVIES':
-      MoviesToDisplay = <MovieSlider movies={topPopularMovies} />;
+      MoviesToDisplay = (
+        <MovieSlider
+          movies={topPopularMovies}
+          pressHandler={moviePressHandler}
+        />
+      );
       break;
     case 'POPULAR_SERIES':
-      MoviesToDisplay = <MovieSlider movies={topPopularSeries} />;
+      MoviesToDisplay = (
+        <MovieSlider
+          movies={topPopularSeries}
+          pressHandler={moviePressHandler}
+        />
+      );
       break;
     case 'TOP_RATED':
-      MoviesToDisplay = <MovieSlider movies={topRatedMovies} />;
+      MoviesToDisplay = (
+        <MovieSlider movies={topRatedMovies} pressHandler={moviePressHandler} />
+      );
       break;
     default:
       break;
@@ -79,7 +100,10 @@ export default function Home({navigation}: HomeProps) {
         padding: 10,
       }}>
       <Text style={styles.HeadingText}>What do you want to watch?</Text>
-      <TopBoxOfficeLastWeek movies={topBoxOfficeMoviesLastWeek} />
+      <TopBoxOfficeLastWeek
+        movies={topBoxOfficeMoviesLastWeek}
+        pressHandler={moviePressHandler}
+      />
       <ScrollView
         style={styles.ScrollContainer}
         showsHorizontalScrollIndicator={false}
@@ -89,10 +113,6 @@ export default function Home({navigation}: HomeProps) {
           paddingHorizontal: 10,
           gap: 20,
         }}>
-        {/* <Pressable
-          onPress={() => navigation.navigate('Details', {id: 'something'})}>
-          <Text>Press me</Text>
-        </Pressable> */}
         <Pressable
           style={[
             movieList === 'TOP_BOX_OFFICE' && styles.Selected,
@@ -127,7 +147,6 @@ export default function Home({navigation}: HomeProps) {
         </Pressable>
       </ScrollView>
 
-      {/* <MovieSlider movies={topBoxOfficeMovies} /> */}
       {MoviesToDisplay}
     </SafeAreaView>
   );

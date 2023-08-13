@@ -1,12 +1,18 @@
 interface Movies {
   _id: string;
   id: string;
-  primaryImage: primaryImage ;
+  ratingsSummary: ratingsSummary;
+  primaryImage: primaryImage;
   titleType: titleType;
+  genres: genres;
   titleText: titleText;
   originalTitleText: titleText;
   releaseYear: releaseYear;
   releaseDate: releaseDate;
+  runtime: runtime;
+  series: null;
+  meterRanking: meterRanking;
+  plot: plot;
   position: number;
 }
 
@@ -47,6 +53,40 @@ interface releaseDate {
   day: number;
   month: number;
   year: number;
+  _typename: string;
+}
+
+interface ratingsSummary {
+  aggregateRating: number;
+  voteCount: number;
+  _typename: string;
+}
+
+interface genres {
+  genres: genre[];
+  _typename: string;
+}
+
+interface genre {
+  text: string;
+  id: string;
+  _typename: string;
+}
+
+interface runtime {
+  seconds: number;
+  _typename: string;
+}
+
+interface meterRanking {
+  currentRank: number;
+  rankChange: {changeDirection: string; difference: number; _typename: string};
+  _typename: string;
+}
+
+interface plot {
+  plotText: {plainText: string; _typename: string};
+  language: {id: string; _typename: string};
   _typename: string;
 }
 

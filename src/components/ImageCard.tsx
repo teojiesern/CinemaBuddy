@@ -3,9 +3,11 @@ import React from 'react';
 
 type Props = {
   primaryImage: primaryImage;
+  height?: number;
+  width?: number;
 };
 
-export default function ImageCard({primaryImage}: Props) {
+export default function ImageCard({primaryImage, width, height}: Props) {
   return (
     <View>
       {primaryImage ? (
@@ -13,7 +15,10 @@ export default function ImageCard({primaryImage}: Props) {
           source={{uri: primaryImage.url}}
           width={primaryImage.width}
           height={primaryImage.height}
-          style={styles.Image}
+          style={[
+            styles.Image,
+            {width: width ? width : 120, height: height ? height : 170},
+          ]}
         />
       ) : (
         <Image
@@ -29,8 +34,6 @@ export default function ImageCard({primaryImage}: Props) {
 
 const styles = StyleSheet.create({
   Image: {
-    width: 120,
-    height: 170,
     borderRadius: 10,
   },
 });

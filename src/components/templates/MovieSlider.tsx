@@ -1,19 +1,19 @@
 import React from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList, Pressable, StyleSheet, View} from 'react-native';
 import ImageCard from '../ImageCard';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 export type Props = {
   movies: Movies[];
+  pressHandler: (id: Movies) => void;
 };
 
-export default function TopBoxOffice({movies}: Props) {
-  const insets = useSafeAreaInsets();
-
+export default function MovieSlider({movies, pressHandler}: Props) {
   const renderItem = ({item}: {item: Movies}) => {
     return (
       <View style={{margin: 6}}>
-        <ImageCard primaryImage={item.primaryImage} />
+        <Pressable onPress={() => pressHandler(item)}>
+          <ImageCard primaryImage={item.primaryImage} />
+        </Pressable>
       </View>
     );
   };
